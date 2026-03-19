@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>애드센스팜 새싹반 Q&A 가이드라인</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0e17;
+  --card: #111827;
+  --card-hover: #1a2332;
+  --border: #1e293b;
+  --accent: #22d3ee;
+  --accent2: #a78bfa;
+  --accent3: #f472b6;
+  --accent4: #34d399;
+  --accent5: #fb923c;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --text-bright: #f1f5f9;
+  --shadow: 0 4px 30px rgba(0,0,0,.4);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+.grain {
+  position: fixed; inset:0; z-index:9999; pointer-events:none; opacity:.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 420px;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 80px 24px 60px;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: 
+    radial-gradient(ellipse 600px 300px at 30% 40%, rgba(34,211,238,.12), transparent),
+    radial-gradient(ellipse 500px 400px at 70% 60%, rgba(167,139,250,.1), transparent);
+}
+.hero-content { position: relative; z-index: 1; }
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+  animation: fadeUp .8s ease-out;
+}
+.hero .sub {
+  font-size: 1.1rem; color: var(--text-dim); max-width: 600px; margin: 0 auto;
+  animation: fadeUp .8s ease-out .15s both;
+}
+.badge-row {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  margin-top: 28px;
+  animation: fadeUp .8s ease-out .3s both;
+}
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-size: .85rem; font-weight: 600;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.04);
+  backdrop-filter: blur(8px);
+}
+.badge .num { color: var(--accent); font-weight: 800; font-size: 1.05rem; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Container */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* Section title */
+.section-title {
+  font-size: 1.6rem; font-weight: 800; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-title .icon { font-size: 1.3rem; }
+.section-desc { color: var(--text-dim); margin-bottom: 36px; font-size: .95rem; }
+
+/* ---- Stats Overview ---- */
+.stats-section { padding: 40px 0 60px; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 50px;
+}
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  transition: transform .25s, border-color .25s;
+}
+.stat-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+.stat-card::after {
+  content: '';
+  position: absolute; top:0; left:0; right:0; height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  opacity: 0; transition: opacity .3s;
+}
+.stat-card:hover::after { opacity: 1; }
+.stat-label { font-size: .82rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+.stat-value { font-size: 2.2rem; font-weight: 900; color: var(--text-bright); }
+.stat-sub { font-size: .8rem; color: var(--text-dim); margin-top: 4px; }
+
+/* ---- Charts Section ---- */
+.charts-section { padding: 0 0 70px; }
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 768px) { .charts-grid { grid-template-columns: 1fr; } }
+.chart-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+}
+.chart-card h3 {
+  font-size: 1.1rem; font-weight: 700; margin-bottom: 24px;
+  display: flex; align-items: center; gap: 8px;
+}
+
+/* Pie chart via conic-gradient */
+.pie-wrap {
+  display: flex; align-items: center; gap: 32px;
+  flex-wrap: wrap;
+}
+.pie-chart {
+  width: 220px; height: 220px; border-radius: 50%;
+  position: relative; flex-shrink: 0;
+  box-shadow: 0 0 40px rgba(34,211,238,.08);
+}
+.pie-center {
+  position: absolute;
+  inset: 30px;
+  background: var(--card);
+  border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-size: .78rem; color: var(--text-dim);
+}
+.pie-center .big { font-size: 1.6rem; font-weight: 800; color: var(--text-bright); }
+
+.legend { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 180px; }
+.legend-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: .82rem; color: var(--text);
+  padding: 5px 0;
+}
+.legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.legend-pct { margin-left: auto; font-weight: 700; color: var(--text-bright); min-width: 40px; text-align: right; }
+.legend-cnt { color: var(--text-dim); font-size: .78rem; min-width: 30px; text-align: right; }
+
+/* Horizontal bar chart */
+.hbar-list { display: flex; flex-direction: column; gap: 14px; }
+.hbar-item { display: flex; align-items: center; gap: 12px; }
+.hbar-label { font-size: .82rem; width: 130px; flex-shrink: 0; text-align: right; color: var(--text); }
+.hbar-track { flex: 1; height: 26px; background: rgba(255,255,255,.04); border-radius: 6px; overflow: hidden; position: relative; }
+.hbar-fill { height: 100%; border-radius: 6px; transition: width 1.2s cubic-bezier(.22,1,.36,1); display: flex; align-items: center; padding-left: 10px; font-size: .75rem; font-weight: 700; color: rgba(0,0,0,.7); }
+.hbar-val { font-size: .82rem; font-weight: 600; width: 50px; color: var(--text-dim); }
+
+/* ---- QnA Section ---- */
+.qa-section { padding: 0 0 80px; }
+.qa-tabs {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+}
+.qa-tab {
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-size: .82rem; font-weight: 600;
+  cursor: pointer;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  transition: all .2s;
+  white-space: nowrap;
+}
+.qa-tab:hover { border-color: var(--accent); color: var(--text); }
+.qa-tab.active {
+  background: linear-gradient(135deg, rgba(34,211,238,.15), rgba(167,139,250,.1));
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.qa-tab .cnt {
+  display: inline-block;
+  background: rgba(255,255,255,.08);
+  padding: 1px 7px;
+  border-radius: 20px;
+  font-size: .72rem;
+  margin-left: 4px;
+}
+
+.qa-list { display: flex; flex-direction: column; gap: 16px; }
+.qa-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.qa-item:hover { border-color: rgba(34,211,238,.3); }
+.qa-q {
+  padding: 20px 24px;
+  cursor: pointer;
+  display: flex; align-items: flex-start; gap: 14px;
+  user-select: none;
+}
+.qa-q-icon {
+  width: 30px; height: 30px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: .82rem; font-weight: 800; color: var(--bg);
+  flex-shrink: 0; margin-top: 2px;
+}
+.qa-q-text { font-size: .92rem; font-weight: 600; line-height: 1.6; flex: 1; }
+.qa-toggle {
+  width: 24px; height: 24px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-dim); transition: transform .3s;
+  margin-top: 4px;
+}
+.qa-item.open .qa-toggle { transform: rotate(180deg); }
+.qa-a {
+  max-height: 0; overflow: hidden; transition: max-height .4s ease;
+  border-top: 1px solid transparent;
+}
+.qa-item.open .qa-a {
+  max-height: 500px;
+  border-top-color: var(--border);
+}
+.qa-a-inner {
+  padding: 20px 24px 24px 68px;
+  font-size: .88rem; color: var(--text-dim); line-height: 1.8;
+}
+.qa-a-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-size: .72rem; font-weight: 700;
+  background: rgba(52,211,153,.12);
+  color: var(--accent4);
+  margin-bottom: 8px;
+}
+
+/* Tips box */
+.tips-section { padding: 0 0 80px; }
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.tip-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.tip-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.tip-card:nth-child(1)::before { background: var(--accent); }
+.tip-card:nth-child(2)::before { background: var(--accent2); }
+.tip-card:nth-child(3)::before { background: var(--accent3); }
+.tip-card:nth-child(4)::before { background: var(--accent4); }
+.tip-card:nth-child(5)::before { background: var(--accent5); }
+.tip-num {
+  font-size: 2.4rem; font-weight: 900; line-height: 1;
+  background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+}
+.tip-title { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: var(--text-bright); }
+.tip-desc { font-size: .85rem; color: var(--text-dim); line-height: 1.7; }
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 40px 24px;
+  border-top: 1px solid var(--border);
+  font-size: .78rem; color: var(--text-dim);
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-content">
+    <h1>애드센스팜 새싹반 VVIP<br>Q&A 가이드라인</h1>
+    <p class="sub">카카오톡 채팅방 4,401건의 메시지를 분석하여<br>자주 묻는 질문과 답변을 유형별로 정리했습니다</p>
+    <div class="badge-row">
+      <div class="badge">📅 분석기간 <span class="num">2026.03.04 – 03.19</span></div>
+      <div class="badge">💬 총 메시지 <span class="num">4,401</span></div>
+      <div class="badge">❓ 질문 수 <span class="num">967</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="container">
+    <div class="section-title"><span class="icon">📊</span> 전체 현황 요약</div>
+    <p class="section-desc">16일간의 채팅방 데이터 분석 결과입니다.</p>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">총 메시지</div>
+        <div class="stat-value">4,401</div>
+        <div class="stat-sub">시스템 메시지 363건 제외 → 실질 4,038건</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">질문 메시지</div>
+        <div class="stat-value">967</div>
+        <div class="stat-sub">전체 메시지의 23.9%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">답변 확인된 Q&A</div>
+        <div class="stat-value">205</div>
+        <div class="stat-sub">관리자/선배 멘션(@) 기반 매칭</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">질문 유형</div>
+        <div class="stat-value">14개</div>
+        <div class="stat-sub">카테고리 분류 완료</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHARTS -->
+<section class="charts-section">
+  <div class="container">
+    <div class="section-title"><span class="icon">🔍</span> 질문 유형별 분석</div>
+    <p class="section-desc">어떤 주제의 질문이 가장 많은지, 비율과 함께 시각화합니다.</p>
+    <div class="charts-grid">
+      <!-- Pie Chart -->
+      <div class="chart-card">
+        <h3>🥧 질문 유형 비율 (원형 차트)</h3>
+        <div class="pie-wrap">
+          <div class="pie-chart" id="pieChart"></div>
+          <div class="legend" id="pieLegend"></div>
+        </div>
+      </div>
+      <!-- Bar Chart -->
+      <div class="chart-card">
+        <h3>📶 질문 수 순위 (막대 차트)</h3>
+        <div class="hbar-list" id="barChart"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Q&A -->
+<section class="qa-section">
+  <div class="container">
+    <div class="section-title"><span class="icon">💡</span> 유형별 Q&A 가이드라인</div>
+    <p class="section-desc">각 카테고리의 대표 질문과 답변입니다. 탭을 클릭하여 필터링하세요.</p>
+    <div class="qa-tabs" id="qaTabs"></div>
+    <div class="qa-list" id="qaList"></div>
+  </div>
+</section>
+
+<!-- TIPS -->
+<section class="tips-section">
+  <div class="container">
+    <div class="section-title"><span class="icon">⚡</span> 질문 전 체크리스트</div>
+    <p class="section-desc">채팅방에서 반복되는 패턴을 바탕으로 정리한 팁입니다.</p>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-num">01</div>
+        <div class="tip-title">OT 영상 & 강의를 먼저 확인</div>
+        <div class="tip-desc">대부분의 기본 질문은 이미 강의에서 다루고 있습니다. 0강 "시작하기에 앞서"부터 순서대로 시청하세요.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">02</div>
+        <div class="tip-title">질문 시 상황을 구체적으로</div>
+        <div class="tip-desc">"오류가 나요"가 아니라, 어디서/어떤 화면에서/어떤 오류 메시지가 나오는지 스크린샷과 함께 남겨주세요.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">03</div>
+        <div class="tip-title">홈페이지 돋보기 검색 활용</div>
+        <div class="tip-desc">애드센스팜 홈페이지 돋보기(🔍)로 키워드 검색하면 관련 칼럼과 강의를 빠르게 찾을 수 있습니다.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">04</div>
+        <div class="tip-title">닉네임 양식 맞추기</div>
+        <div class="tip-desc">채팅방 닉네임은 규정된 양식에 맞춰주세요. 0강에 해당 내용이 안내되어 있습니다.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">05</div>
+        <div class="tip-title">강의 순서대로 진행</div>
+        <div class="tip-desc">건너뛰지 말고 강의 순서대로 따라가는 것이 가장 효율적입니다. 급하더라도 기초부터 차근차근 진행하세요.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>애드센스팜 새싹반 VVIP 전용 채팅 분석 · 2026.03.04 ~ 03.19 · 총 4,401건 메시지 기반</p>
+  <p style="margin-top:4px; opacity:.5;">AI 기반 자동 분류 결과이며, 실제 맥락과 다를 수 있습니다.</p>
+</footer>
+
+<script>
+// ===== DATA =====
+const categories = [
+  { name: "애드센스 승인/신청", count: 224, color: "#22d3ee" },
+  { name: "블로그스팟 설정/오류", count: 149, color: "#a78bfa" },
+  { name: "강의/자료 관련", count: 91, color: "#f472b6" },
+  { name: "워드프레스 설정", count: 65, color: "#34d399" },
+  { name: "글쓰기/콘텐츠", count: 36, color: "#fb923c" },
+  { name: "SEO/검색등록", count: 35, color: "#facc15" },
+  { name: "계정/다계정 관련", count: 33, color: "#f87171" },
+  { name: "수익/수입 관련", count: 30, color: "#60a5fa" },
+  { name: "기타 기술 문제", count: 18, color: "#c084fc" },
+  { name: "도메인/DNS", count: 15, color: "#2dd4bf" },
+  { name: "티스토리 관련", count: 11, color: "#fbbf24" },
+  { name: "챌린지/기수 관련", count: 9, color: "#818cf8" },
+  { name: "제휴/쿠팡", count: 5, color: "#fb7185" },
+  { name: "기타 질문", count: 246, color: "#475569" },
+];
+const total = categories.reduce((s,c) => s + c.count, 0);
+
+const qaData = [
+  // 애드센스 승인/신청
+  { cat:"애드센스 승인/신청", q:"워드프레스도 티스토리랑 똑같이 같은 주제의 글 10~12개 작성하고 애드센스 승인 신청하면 되는 걸까요?", a:"네, 1-5강을 보시고 직접 선택해보세요. 블로그스팟/워드프레스 모두 같은 기준으로 승인 진행이 가능합니다." },
+  { cat:"애드센스 승인/신청", q:"유튜브용 승인된 애드센스가 있는데, 블로그스팟이나 티스토리로 별도 승인을 또 받아야 하나요?", a:"네, 유튜브 애드센스와 웹사이트 애드센스는 별도입니다. 따로 승인을 받으셔야 합니다." },
+  { cat:"애드센스 승인/신청", q:"기존에 글 20여 개가 있는 블로그도 승인에 문제 없을까요? 아니면 새로 만들어야 하나요?", a:"강의대로만 한다고 생각하세요. 애드센스팜 홈페이지 돋보기로 검색하시면 관련 내용을 모두 확인할 수 있습니다." },
+  { cat:"애드센스 승인/신청", q:"거절 후 재신청 버튼이 따로 있나요? 처음이라 잘 모르겠습니다.", a:"거절된 도메인을 클릭하면 '수정하였습니다' 체크 후 검토요청 버튼이 보입니다. 재신청 후 글도 좀 더 추가해두세요." },
+  { cat:"애드센스 승인/신청", q:"애드센스 승인 전인데 워드프레스까지 승인 신청하기보다 블팟에 집중하는 게 나을까요?", a:"애드센스가 승인된 도메인이 있다면 서브도메인을 워드프레스에 연결하여 곧바로 광고를 표시할 수 있습니다." },
+
+  // 블로그스팟 설정
+  { cat:"블로그스팟 설정/오류", q:"블로그스팟에 스킨 적용했는데 메인화면 9칸 중 글이 7개밖에 안 나와요. 게시물더보기 버튼도 반응이 없습니다.", a:"1-13강 보충 아래에 오류 해결법이 있습니다. 해당 부분을 참고하세요." },
+  { cat:"블로그스팟 설정/오류", q:"블로그스팟 개설 후 스킨 적용했는데, 메뉴를 카테고리별 페이지로 연결하는 방법이 궁금합니다.", a:"애드센스팜 블로그스팟 스킨 설치 강의에 해당 내용이 모두 포함되어 있습니다. 강의 목록에서 해당 이름으로 찾으세요." },
+  { cat:"블로그스팟 설정/오류", q:"네이버 서치어드바이저 HTML 태그를 블로그스팟 테마에 넣으면 계속 오류가 납니다.", a:"1-13강 보충 아래 오류 해결법을 확인하세요. 강의에서 해당 오류에 대한 해결 방법을 다루고 있습니다." },
+  { cat:"블로그스팟 설정/오류", q:"블로그스팟 도메인 연결 중 실수로 DNS 설정 후 저장하지 않고 취소를 눌렀습니다. 어떻게 해야 하나요?", a:"블로그스팟 도메인 연결 강의를 보시고 전체 과정을 꼼꼼히 되짚으세요. 이미 된 부분은 스킵, 안 된 부분만 보강하면 됩니다." },
+
+  // 워드프레스
+  { cat:"워드프레스 설정", q:"워드프레스 강의 따라하다가 플러그인이 너무 많은 것 같아요. 다 설치해도 되는 건가요?", a:"그리 많은 편은 아닙니다. WPCode는 삭제하고, 대신 GP Premium을 통해 코드를 추가하세요. 기능이 중복됩니다." },
+  { cat:"워드프레스 설정", q:"가비아 도메인은 블로그마다 한 개씩 구매해야 하나요?", a:"네, 기본적으로 각 블로그(사이트)마다 별도의 도메인이 필요합니다." },
+  { cat:"워드프레스 설정", q:"워프 스킨 설치 서비스(10만원) 지금 구매해도 되나요? 초기화 같은 걸 해야 하나요?", a:"네 가능합니다. 실질적인 콘텐츠가 없다면 초기화 후 진행하는 것이 더 깔끔할 수 있습니다." },
+
+  // 도메인/DNS
+  { cat:"도메인/DNS", q:"등록한 도메인이 브라우저에서 검색은 되는데 접속이 안 됩니다. robots.txt 문제일까요?", a:"블로그스팟 도메인 연결 강의를 보시고 전체 과정을 꼼꼼히 되짚어보세요. 보안인증서(SSL) 발급이 아직 안 되어서 그럴 수 있습니다." },
+
+  // 글쓰기/콘텐츠
+  { cat:"글쓰기/콘텐츠", q:"수익형 글쓰기에 AI를 유료로 쓰려면, 제미나이와 GPT 중 뭐가 더 활용도가 높을까요?", a:"제미나이 쓰시고, 부족하시면 그때 다시 고민해보세요. Gems도 제공되니 활용하시면 됩니다." },
+  { cat:"글쓰기/콘텐츠", q:"수익형 글쓰기에서 '무료'라는 키워드를 써도 저작권에 문제가 없나요?", a:"걱정되시면 안 쓰시면 됩니다. 강의에서 안내하는 방식은 경험적으로 문제가 없었기에 안내드리는 부분입니다." },
+
+  // SEO
+  { cat:"SEO/검색등록", q:"네이버 서치어드바이저 최종업데이트가 12월이면, 그 이후로 색인을 안 한 건가요?", a:"네. 등록 과정에 문제가 없다면 추가 조치는 거의 없습니다. 수동으로 수집 요청을 해주세요. SEO 검사 항목을 확인하세요." },
+  { cat:"SEO/검색등록", q:"오늘 티스토리 4개를 만들었는데, 지금 네이버 서치어드바이저에 등록해 놓아야 할까요?", a:"왜 간단한 글을 쓰고 발행한 뒤 한 달 묵히라고 하는지, 네이버 서치어드바이저에 등록하는 이유를 먼저 이해하시면 답이 나옵니다." },
+
+  // 계정 관련
+  { cat:"계정/다계정 관련", q:"애드센스 계정 해지하고 다시 등록하는 게 가능한가요?", a:"직접 해보진 않았습니다. 계정 해지는 정상 운영 상태에서만 가능한 것으로 검색됩니다." },
+  { cat:"계정/다계정 관련", q:"다른 계정인데 삭제가 안 됩니다. 구글 계정 자체를 삭제해야 할까요?", a:"계정 상태가 정확히 파악되어야 답변이 가능합니다. 계정을 어떻게 만드셨는지 정리해서 질문해주세요." },
+
+  // 수익
+  { cat:"수익/세금 관련", q:"애드센스 수익과 홈판 유입 수입은 다른 건가요?", a:"네, 다릅니다. 강의를 보시면 자세히 나옵니다." },
+
+  // 강의/운영
+  { cat:"강의/운영 관련", q:"벤치마킹 블로그 사이트 시트지 링크 공유는 어디 있나요?", a:"챌린지 신청하신 분들만 받을 수 있는 자료입니다." },
+  { cat:"강의/운영 관련", q:"이번 기수가 몇 기인가요? 챌린지방에서 몇 기를 선택해야 하나요?", a:"기수 확인은 0강 안내를 참고하시거나 고객센터에 문의해주세요." },
+
+  // 티스토리
+  { cat:"티스토리 관련", q:"강의에서 티스토리가 제한이 많다고 했는데, 그래도 티스토리부터 시작해야 하나요?", a:"티스토리 자체 제한이 많아 점유율이 떨어졌지만, 블로그 초반 운영 학습과 2차도메인 연결·해제 연습에는 티스토리가 좋습니다. 1-5강 보시고 직접 선택해보세요." },
+];
+
+// ===== PIE CHART =====
+const sorted = [...categories].sort((a,b) => b.count - a.count);
+// exclude 기타 질문 from pie visual, keep top categories
+const pieData = sorted.filter(c => c.name !== "기타 질문");
+const pieTotal = pieData.reduce((s,c) => s + c.count, 0);
+
+let angle = 0;
+const conicStops = [];
+pieData.forEach(c => {
+  const pct = (c.count / pieTotal) * 100;
+  conicStops.push(`${c.color} ${angle.toFixed(2)}% ${(angle + pct).toFixed(2)}%`);
+  angle += pct;
+});
+document.getElementById('pieChart').style.background = `conic-gradient(${conicStops.join(', ')})`;
+document.querySelector('.pie-center') || (() => {
+  const center = document.createElement('div');
+  center.className = 'pie-center';
+  center.innerHTML = `<div class="big">${pieTotal}</div>질문`;
+  document.getElementById('pieChart').appendChild(center);
+})();
+
+// Legend
+const legendEl = document.getElementById('pieLegend');
+pieData.slice(0, 10).forEach(c => {
+  const pct = ((c.count / pieTotal) * 100).toFixed(1);
+  legendEl.innerHTML += `
+    <div class="legend-item">
+      <span class="legend-dot" style="background:${c.color}"></span>
+      <span>${c.name}</span>
+      <span class="legend-cnt">${c.count}</span>
+      <span class="legend-pct">${pct}%</span>
+    </div>`;
+});
+
+// ===== BAR CHART =====
+const barEl = document.getElementById('barChart');
+const maxCount = sorted[0].count;
+sorted.forEach(c => {
+  const pct = (c.count / maxCount * 100).toFixed(1);
+  barEl.innerHTML += `
+    <div class="hbar-item">
+      <div class="hbar-label">${c.name}</div>
+      <div class="hbar-track">
+        <div class="hbar-fill" style="width:0%; background:${c.color};">${c.count}</div>
+      </div>
+      <div class="hbar-val">${((c.count/total)*100).toFixed(1)}%</div>
+    </div>`;
+});
+// Animate bars
+setTimeout(() => {
+  document.querySelectorAll('.hbar-fill').forEach((el, i) => {
+    const w = (sorted[i].count / maxCount * 100).toFixed(1);
+    setTimeout(() => { el.style.width = w + '%'; }, i * 60);
+  });
+}, 300);
+
+// ===== Q&A TABS =====
+const uniqueCats = [...new Set(qaData.map(q => q.cat))];
+const tabsEl = document.getElementById('qaTabs');
+const listEl = document.getElementById('qaList');
+
+function renderTabs() {
+  tabsEl.innerHTML = `<div class="qa-tab active" data-cat="all">전체 <span class="cnt">${qaData.length}</span></div>`;
+  uniqueCats.forEach(cat => {
+    const cnt = qaData.filter(q => q.cat === cat).length;
+    tabsEl.innerHTML += `<div class="qa-tab" data-cat="${cat}">${cat} <span class="cnt">${cnt}</span></div>`;
+  });
+}
+renderTabs();
+
+function renderQA(filter) {
+  const items = filter === 'all' ? qaData : qaData.filter(q => q.cat === filter);
+  listEl.innerHTML = '';
+  items.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'qa-item';
+    div.innerHTML = `
+      <div class="qa-q">
+        <div class="qa-q-icon">Q</div>
+        <div class="qa-q-text">${item.q}</div>
+        <div class="qa-toggle"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="qa-a">
+        <div class="qa-a-inner">
+          <div class="qa-a-badge">✅ 답변</div>
+          <div>${item.a}</div>
+        </div>
+      </div>`;
+    div.querySelector('.qa-q').addEventListener('click', () => div.classList.toggle('open'));
+    listEl.appendChild(div);
+  });
+}
+renderQA('all');
+
+tabsEl.addEventListener('click', e => {
+  const tab = e.target.closest('.qa-tab');
+  if (!tab) return;
+  tabsEl.querySelectorAll('.qa-tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  renderQA(tab.dataset.cat);
+});
+</script>
+</body>
+</html>
